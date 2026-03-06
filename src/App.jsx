@@ -2,23 +2,26 @@ import './App.css';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import HomePage from './pages/home';
-import DistrictsPage from './pages/districts';
-import DistrictPage from './pages/district';
+import CategoriesPage from './pages/categories';
+import CategoryPage from './pages/category';
 import PlacePage from './pages/place';
 import NotFoundPage from './pages/not-found';
+import TodosProvider from './components/TodosProvider';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path="districts" element={<DistrictsPage />} />
-        <Route path="districts/:districtId" element={<DistrictPage />} />
-        <Route path="districts/:districtId/places/:placeId" element={<PlacePage />} />
-        <Route path="home" element={<Navigate to="/" replace />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+    <TodosProvider>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="categories" element={<CategoriesPage />} />
+          <Route path="categories/:categoryId" element={<CategoryPage />} />
+          <Route path="categories/:categoryId/places/:placeId" element={<PlacePage />} />
+          <Route path="home" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </TodosProvider>
   );
 }
 

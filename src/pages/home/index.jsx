@@ -8,7 +8,7 @@ function HomePage() {
       <div className="hero">
         <h1>Добро пожаловать в наш город!</h1>
         <p>Откройте для себя удивительные места и достопримечательности</p>
-        <Link to="/districts" className="cta-button">
+        <Link to="/categories" className="cta-button">
           Исследовать районы →
         </Link>
       </div>

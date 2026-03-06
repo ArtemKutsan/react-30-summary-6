@@ -17,7 +17,7 @@ function Layout() {
               Главная
             </NavLink>
             <NavLink
-              to="/districts"
+              to="/categories"
               className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
             >
               Районы

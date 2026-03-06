@@ -1,27 +1,27 @@
-// src/components/district/index.jsx
-// import styles from './district.module.css';
+// src/components/category/index.jsx
+// import styles from './category.module.css';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { districtsData } from '../../data';
+import { initialCategories } from '../../data';
 
-function DistrictPage() {
-  const { districtId } = useParams();
-  const district = districtsData.find((district) => district.id === districtId);
+function CategoryPage() {
+  const { categoryId } = useParams();
+  const category = initialCategories.find((category) => category.id === categoryId);
 
   return (
-    <div className="district-page">
-      <div className="district-header">
-        <Link to="/districts" className="back-link">
+    <div className="category-page">
+      <div className="category-header">
+        <Link to="/categories" className="back-link">
           ← Назад к районам
         </Link>
-        <h1>{district.name}</h1>
-        <p className="district-description">{district.description}</p>
+        <h1>{category.name}</h1>
+        <p className="category-description">{category.description}</p>
       </div>
       <div className="places-section">
         <h2>Достопримечательности района</h2>
         <div className="places-grid">
-          {district.places.map((place) => (
+          {category.places.map((place) => (
             <Link
-              to={`/districts/${districtId}/places/${place.id}`}
+              to={`/categories/${categoryId}/places/${place.id}`}
               key={place.id}
               className="place-card"
             >
@@ -38,4 +38,4 @@ function DistrictPage() {
     </div>
   );
 }
-export default DistrictPage;
+export default CategoryPage;

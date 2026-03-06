@@ -153,20 +153,20 @@ body {
   margin-bottom: 1rem;
   display: block;
 }
-/* Districts.css */
-.districts h1 {
+/* Categories.css */
+.categories h1 {
   margin-bottom: 0.5rem;
 }
 .subtitle {
   color: #666;
   margin-bottom: 2rem;
 }
-.districts-grid {
+.categories-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
-.district-card {
+.category-card {
   background: white;
   padding: 1.5rem;
   border-radius: 8px;
@@ -177,15 +177,15 @@ body {
     transform 0.3s,
     box-shadow 0.3s;
 }
-.district-card:hover {
+.category-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
-.district-card h2 {
+.category-card h2 {
   color: #2c3e50;
   margin-bottom: 0.5rem;
 }
-.district-card p {
+.category-card p {
   color: #666;
   margin-bottom: 1rem;
   line-height: 1.5;
@@ -206,11 +206,11 @@ body {
   color: #3498db;
   font-weight: 500;
 }
-/* District.css */
-.district-header {
+/* Category.css */
+.category-header {
   margin-bottom: 2rem;
 }
-.district-description {
+.category-description {
   color: #666;
   font-size: 1.1rem;
   line-height: 1.6;
