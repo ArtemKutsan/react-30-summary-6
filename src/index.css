@@ -66,8 +66,6 @@ button,
   font-family: inherit;
   font-size: 0.875rem;
   font-weight: 500;
-  background-color: var(--primary);
-  color: white;
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
@@ -80,15 +78,27 @@ button,
   text-decoration: none;
 }
 
-button:hover,
-.button:hover {
+.button-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.button-primary:hover {
   background-color: var(--primary-hover);
-  /* box-shadow: var(--shadow-sm); */
+}
+
+.button-transparent {
+  background-color: transparent;
+  color: var(--text-muted);
+}
+
+.button-transparent:hover {
+  color: var(--text-main);
 }
 
 button:active,
 .button:active {
-  transform: translateY(0.0625rem);
+  transform: scale(0.95);
 }
 
 button:disabled {

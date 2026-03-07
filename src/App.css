@@ -163,6 +163,15 @@
 }
 
 /* Categories Styles */
+.categories-header {
+  margin-bottom: 2rem;
+}
+
+.categories-subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
@@ -176,6 +185,23 @@
   border-radius: var(--radius);
   border: 0.0625rem solid var(--border);
   transition: box-shadow 0.2s;
+}
+
+.category-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.category-desc {
+  color: var(--text-muted);
+  margin: 0.25rem 0 1rem;
+  font-size: 0.875rem;
+}
+
+.category-select {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.8125rem;
 }
 
 .category-card:hover {
@@ -201,6 +227,32 @@
 }
 
 /* Place List Styles */
+.category-header-box {
+  margin-bottom: 2rem;
+}
+
+.category-back-link {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.category-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.category-main-icon {
+  font-size: 2.5rem;
+}
+
+.places-section-title {
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+}
+
 .places-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
@@ -234,6 +286,17 @@
   padding: 1rem;
 }
 
+.place-card-name {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.place-card-desc {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
 /* Place Page */
 
 .place-not-found {
@@ -247,6 +310,9 @@
 
 .place-header {
   margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .place-back-link {
@@ -296,11 +362,6 @@
   margin-top: 1.5rem;
 }
 
-.place-back-button {
-  background: none;
-  color: var(--text-muted);
-}
-
 /* Detail Styles */
 .place-page {
   max-width: 50rem;
@@ -312,6 +373,108 @@
   padding: 2.5rem;
   border-radius: var(--radius-lg);
   border: 0.0625rem solid var(--border);
+}
+
+/* Favorite Toggle */
+.favorite-toggle {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  line-height: 1;
+}
+
+.favorite-toggle.active {
+  color: #fbbf24;
+}
+
+/* Favorites Page */
+.favorites-title {
+  margin-bottom: 2rem;
+}
+
+.favorites-empty {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 0.0625rem dashed var(--border);
+}
+
+.favorites-empty p {
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+  gap: 1rem;
+}
+
+.favorite-card {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 0.0625rem solid var(--border);
+  gap: 1rem;
+  transition: transform 0.2s;
+}
+
+.favorite-card:hover {
+  transform: translateY(-0.125rem);
+  border-color: var(--text-muted);
+}
+
+.favorite-icon {
+  font-size: 2rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-main);
+  border-radius: 0.5rem;
+}
+
+.favorite-info {
+  flex: 1;
+}
+
+.favorite-name {
+  font-size: 1rem;
+  margin-bottom: 0.125rem;
+}
+
+.favorite-desc {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* About Page */
+.about-page {
+  max-width: 43.75rem;
+  margin: 0 auto;
+}
+
+.about-title {
+  margin-bottom: 1.5rem;
+}
+
+.about-content {
+  background: var(--bg-card);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border: 0.0625rem solid var(--border);
+  line-height: 1.6;
+}
+
+.about-content p {
+  margin-bottom: 1rem;
+}
+
+.about-content p:last-child {
+  margin-bottom: 0;
 }
 
 /* Progress Circle */
@@ -465,20 +628,11 @@
 }
 
 .todo-delete {
-  background: none;
-  color: var(--text-muted);
   padding: 0.25rem;
   font-size: 1rem;
-  opacity: 0.5;
-  transition: opacity 0.15s;
 }
 
-.todo-delete:hover {
-  opacity: 1;
-}
-
-/* Responsive adjustments */
-@media (max-width: 40rem) {
+@media (max-width: 640px) {
   .header .container {
     flex-direction: row;
   }
