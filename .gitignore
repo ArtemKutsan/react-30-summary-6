@@ -25,3 +25,6 @@ dist-ssr
 
 # Шаблонный компонент
 src/components/Template/
+
+# Временная папка
+temp
