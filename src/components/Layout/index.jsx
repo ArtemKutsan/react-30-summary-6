@@ -1,26 +1,28 @@
 // src/components/Layout/index.jsx
-// import styles from './Layout.module.css';
 import { NavLink, Outlet } from 'react-router-dom';
+import '../../App.css';
 
 function Layout() {
   return (
     <div className="layout">
       <header className="header">
         <div className="container">
-          <h1 className="logo">🏙️ Мой город</h1>
+          <NavLink to="/" className="logo">
+            <span>✈️</span> TRAVEL PLANNER
+          </NavLink>
           <nav className="nav">
             <NavLink
               to="/"
               className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
               end
             >
-              Главная
+              Обзор
             </NavLink>
             <NavLink
               to="/categories"
               className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
             >
-              Районы
+              Маршруты
             </NavLink>
           </nav>
         </div>
@@ -32,7 +34,7 @@ function Layout() {
       </main>
       <footer className="footer">
         <div className="container">
-          <p>© 2026 Мой город. Все права защищены.</p>
+          <p>© 2026 Travel Planner. Профессиональное планирование ваших поездок.</p>
         </div>
       </footer>
     </div>
