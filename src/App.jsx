@@ -5,6 +5,8 @@ import HomePage from './pages/home';
 import CategoriesPage from './pages/categories';
 import CategoryPage from './pages/category';
 import PlacePage from './pages/place';
+import FavoritesPage from './pages/favorites';
+import AboutPage from './pages/about';
 import NotFoundPage from './pages/not-found';
 import TodosProvider from './components/TodosProvider';
 
@@ -17,6 +19,8 @@ function App() {
           <Route path="categories" element={<CategoriesPage />} />
           <Route path="categories/:categoryId" element={<CategoryPage />} />
           <Route path="categories/:categoryId/places/:placeId" element={<PlacePage />} />
+          <Route path="favorites" element={<FavoritesPage />} />
+          <Route path="about" element={<AboutPage />} />
           <Route path="home" element={<Navigate to="/" replace />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
