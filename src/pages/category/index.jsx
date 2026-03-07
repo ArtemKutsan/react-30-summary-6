@@ -1,23 +1,28 @@
-// src/components/category/index.jsx
-// import styles from './category.module.css';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { initialCategories } from '../../data';
 
 function CategoryPage() {
   const { categoryId } = useParams();
-  const category = initialCategories.find((category) => category.id === categoryId);
+  const category = initialCategories.find((cat) => cat.id === categoryId);
+
+  if (!category) {
+    return <Navigate to="/404" replace />;
+  }
 
   return (
     <div className="category-page">
-      <div className="category-header">
-        <Link to="/categories" className="back-link">
-          ← Назад к районам
+      <div style={{ marginBottom: '2rem' }}>
+        <Link to="/categories" style={{ color: 'var(--text-muted)', fontSize: '0.875rem', display: 'block', marginBottom: '0.75rem' }}>
+          ← Все категории
         </Link>
-        <h1>{category.name}</h1>
-        <p className="category-description">{category.description}</p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <span style={{ fontSize: '2.5rem' }}>{category.icon}</span>
+          <h1>{category.name}</h1>
+        </div>
       </div>
+
       <div className="places-section">
-        <h2>Достопримечательности района</h2>
+        <h2 style={{ marginBottom: '1rem', fontSize: '1.125rem' }}>Доступные локации</h2>
         <div className="places-grid">
           {category.places.map((place) => (
             <Link
@@ -27,9 +32,10 @@ function CategoryPage() {
             >
               <div className="place-emoji">{place.image}</div>
               <div className="place-info">
-                <h3>{place.name}</h3>
-                <p>{place.description.substring(0, 60)}...</p>
-                <span className="view-details">Подробнее →</span>
+                <h3 style={{ fontSize: '1rem', marginBottom: '0.25rem' }}>{place.name}</h3>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.8125rem', lineHeight: '1.4' }}>
+                  {place.description.substring(0, 70)}...
+                </p>
               </div>
             </Link>
           ))}
@@ -38,4 +44,5 @@ function CategoryPage() {
     </div>
   );
 }
+
 export default CategoryPage;
