@@ -1,139 +1,116 @@
-// src/components/TodoList/index.jsx
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import TodosContext from '../../context/todos-context';
 
 function TodoList({ placeId }) {
   const { todos, setTodos } = useContext(TodosContext);
-
   const [loading, setLoading] = useState(true);
-  const [inputValue, setInputValue] = useState('');
 
-  // Имитация загрузки
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: { text: '' },
+  });
+
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
+    const timer = setTimeout(() => setLoading(false), 800);
     return () => clearTimeout(timer);
-  }, []);
+  }, [placeId]);
 
-  if (loading) return <p>Загрузка...</p>;
+  if (loading) return <div className="todo-loading">Подготовка данных...</div>;
 
-  // Тудушки для текущего места
   const currentTodos = todos[placeId] ?? [];
 
-  // Добавление туду
-  const addTodo = () => {
-    if (!inputValue.trim()) return;
-
+  const addTodo = ({ text }) => {
     const newTodo = {
       id: Date.now().toString(),
-      text: inputValue.trim(),
+      text,
       completed: false,
     };
 
-    const updatedTodos = [...currentTodos, newTodo];
-
     setTodos((prev) => ({
       ...prev,
-      [placeId]: updatedTodos,
+      [placeId]: [...(prev[placeId] || []), newTodo],
     }));
 
-    setInputValue('');
+    reset();
   };
 
-  // Переключение completed
   const toggleTodo = (id) => {
-    const updatedTodos = currentTodos.map((todo) =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo,
-    );
-
     setTodos((prev) => ({
       ...prev,
-      [placeId]: updatedTodos,
+      [placeId]: prev[placeId].map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+      ),
     }));
   };
 
-  // Удаление туду
   const deleteTodo = (id) => {
-    const updatedTodos = currentTodos.filter((todo) => todo.id !== id);
-
     setTodos((prev) => ({
       ...prev,
-      [placeId]: updatedTodos,
+      [placeId]: prev[placeId].filter((todo) => todo.id !== id),
     }));
   };
 
-  // Прогресс выполнения
-  const completedCount = currentTodos.filter((todo) => todo.completed).length;
+  const completedCount = currentTodos.filter((t) => t.completed).length;
   const totalCount = currentTodos.length;
   const progress = totalCount === 0 ? 0 : Math.round((completedCount / totalCount) * 100);
 
   return (
-    <>
-      <span>Запланировано:</span>
-
-      {/* Прогресс-бар */}
-      <div style={{ margin: '1rem 0' }}>
-        <div
-          style={{
-            height: '0.5rem',
-            width: '100%',
-            background: '#ddd',
-            borderRadius: '0.5rem',
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              height: '100%',
-              width: `${progress}%`,
-              background: '#4caf50',
-              transition: '0.3s',
-            }}
-          />
+    <div className="todo-container">
+      <div className="todo-progress">
+        <div className="todo-progress-header">
+          <span>Готовность локации</span>
+          <span>{progress}%</span>
         </div>
-        <small>
-          {completedCount} из {totalCount} выполнено ({progress}%)
-        </small>
+
+        <div className="todo-progress-bar">
+          <div className="todo-progress-fill" style={{ width: `${progress}%` }} />
+        </div>
       </div>
 
-      {/* Инпут + кнопка */}
-      <div style={{ margin: '1rem 0', display: 'flex', gap: '1rem' }}>
+      <form onSubmit={handleSubmit(addTodo)} className="todo-form">
         <input
           type="text"
-          placeholder="Новая задача..."
-          value={inputValue}
-          onChange={(event) => setInputValue(event.target.value)}
+          placeholder="Добавить пункт плана..."
+          {...register('text', { required: true })}
+          className="todo-input"
         />
-        <button onClick={addTodo}>Добавить</button>
-      </div>
+        <button type="submit" className="todo-button">
+          Добавить
+        </button>
+      </form>
 
-      {/* Список */}
-      <ol style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-        {currentTodos.map((todo) => (
-          <li key={todo.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <input type="checkbox" checked={todo.completed} onChange={() => toggleTodo(todo.id)} />
-            <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
-              {todo.text}
-            </span>
+      {errors.text && <p className="todo-error">Введите текст задачи</p>}
 
-            {/* Кнопка удаления */}
-            <button
-              onClick={() => deleteTodo(todo.id)}
-              style={{
-                marginLeft: 'auto',
-                background: 'red',
-                height: '2rem',
-                width: '2rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              ✕
-            </button>
-          </li>
-        ))}
-      </ol>
-    </>
+      {currentTodos.length === 0 ? (
+        <p className="todo-empty">План пуст. Добавьте задачи для этой точки маршрута.</p>
+      ) : (
+        <ul className="todo-list">
+          {currentTodos.map((todo) => (
+            <li key={todo.id} className="todo-item">
+              <input
+                type="checkbox"
+                checked={todo.completed}
+                onChange={() => toggleTodo(todo.id)}
+                className="todo-checkbox"
+              />
+
+              <span className={`todo-text ${todo.completed ? 'completed' : 'active'}`}>
+                {todo.text}
+              </span>
+
+              <button onClick={() => deleteTodo(todo.id)} className="todo-delete">
+                ✕
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 
