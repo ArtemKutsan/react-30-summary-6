@@ -234,6 +234,73 @@
   padding: 1rem;
 }
 
+/* Place Page */
+
+.place-not-found {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.place-not-found-button {
+  margin-top: 1.5rem;
+}
+
+.place-header {
+  margin-bottom: 1.5rem;
+}
+
+.place-back-link {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.place-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.place-emoji-large {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.place-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.place-description {
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 37.5rem;
+  margin: 0 auto;
+}
+
+.place-checklist {
+  background: var(--bg-main);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  margin-top: 2rem;
+}
+
+.place-checklist-title {
+  font-size: 1.125rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.place-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.place-back-button {
+  background: none;
+  color: var(--text-muted);
+}
+
 /* Detail Styles */
 .place-page {
   max-width: 50rem;
