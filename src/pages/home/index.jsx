@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import TodosContext from '../../context/todos-context';
 import { initialCategories } from '../../data';
+import Meta from '../../components/Meta';
 
 function HomePage() {
   const { todos } = useContext(TodosContext);
@@ -16,13 +17,14 @@ function HomePage() {
 
   return (
     <div className="home">
+      <Meta title="Главная" />
       <div className="hero">
         <h1>Спланируйте ваше идеальное путешествие</h1>
         <p>
           Управляйте маршрутами, составляйте списки дел и следите за прогрессом подготовки к поездке
           в одном удобном сервисе.
         </p>
-        <Link to="/categories" className="button">
+        <Link to="/categories" className="button button-primary">
           Перейти к маршрутам →
         </Link>
       </div>
