@@ -24,6 +24,18 @@ function Layout() {
             >
               Маршруты
             </NavLink>
+            <NavLink
+              to="/favorites"
+              className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+            >
+              Избранное
+            </NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+            >
+              О приложении
+            </NavLink>
           </nav>
         </div>
       </header>
