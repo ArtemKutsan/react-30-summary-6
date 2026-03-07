@@ -79,7 +79,7 @@ function TodoList({ placeId }) {
           {...register('text', { required: true })}
           className="todo-input"
         />
-        <button type="submit" className="todo-button">
+        <button type="submit" className="button-primary todo-button">
           Добавить
         </button>
       </form>
@@ -103,7 +103,10 @@ function TodoList({ placeId }) {
                 {todo.text}
               </span>
 
-              <button onClick={() => deleteTodo(todo.id)} className="todo-delete">
+              <button
+                onClick={() => deleteTodo(todo.id)}
+                className="button-transparent todo-delete"
+              >
                 ✕
               </button>
             </li>

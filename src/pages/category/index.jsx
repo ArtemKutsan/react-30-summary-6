@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { initialCategories } from '../../data';
+import Meta from '../../components/Meta';
 
 function CategoryPage() {
   const { categoryId } = useParams();
@@ -11,18 +12,19 @@ function CategoryPage() {
 
   return (
     <div className="category-page">
-      <div style={{ marginBottom: '2rem' }}>
-        <Link to="/categories" style={{ color: 'var(--text-muted)', fontSize: '0.875rem', display: 'block', marginBottom: '0.75rem' }}>
+      <Meta title={category.name} />
+      <div className="category-header-box">
+        <Link to="/categories" className="category-back-link">
           ← Все категории
         </Link>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <span style={{ fontSize: '2.5rem' }}>{category.icon}</span>
+        <div className="category-title-row">
+          <span className="category-main-icon">{category.icon}</span>
           <h1>{category.name}</h1>
         </div>
       </div>
 
       <div className="places-section">
-        <h2 style={{ marginBottom: '1rem', fontSize: '1.125rem' }}>Доступные локации</h2>
+        <h2 className="places-section-title">Доступные локации</h2>
         <div className="places-grid">
           {category.places.map((place) => (
             <Link
@@ -32,10 +34,8 @@ function CategoryPage() {
             >
               <div className="place-emoji">{place.image}</div>
               <div className="place-info">
-                <h3 style={{ fontSize: '1rem', marginBottom: '0.25rem' }}>{place.name}</h3>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.8125rem', lineHeight: '1.4' }}>
-                  {place.description.substring(0, 70)}...
-                </p>
+                <h3 className="place-card-name">{place.name}</h3>
+                <p className="place-card-desc">{place.description.substring(0, 70)}...</p>
               </div>
             </Link>
           ))}
